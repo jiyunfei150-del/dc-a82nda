@@ -18,206 +18,180 @@
 
   body::before {
     content: '';
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background:
-      radial-gradient(ellipse 70% 50% at 10% 0%, rgba(99,102,241,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 10% 0%,  rgba(99,102,241,0.07) 0%, transparent 60%),
       radial-gradient(ellipse 50% 60% at 90% 100%, rgba(16,185,129,0.06) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
+    pointer-events: none; z-index: 0;
   }
 
   .wrapper {
-    position: relative;
-    z-index: 1;
-    max-width: 960px;
+    position: relative; z-index: 1;
+    max-width: 1200px;
     margin: 0 auto;
     padding: 48px 24px 72px;
   }
 
   /* ── Header ── */
-  .header {
-    text-align: center;
-    margin-bottom: 52px;
-  }
+  .header { text-align: center; margin-bottom: 48px; }
   .badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    background: #ede9fe;
-    border: 1px solid #c4b5fd;
-    border-radius: 20px;
-    padding: 4px 14px;
-    font-size: 11px;
-    font-weight: 600;
-    color: #7c3aed;
-    letter-spacing: 0.07em;
-    text-transform: uppercase;
+    display: inline-flex; align-items: center; gap: 6px;
+    background: #ede9fe; border: 1px solid #c4b5fd;
+    border-radius: 20px; padding: 4px 14px;
+    font-size: 11px; font-weight: 600; color: #7c3aed;
+    letter-spacing: 0.07em; text-transform: uppercase;
     margin-bottom: 16px;
   }
   .header h1 {
-    font-size: clamp(26px, 5vw, 40px);
-    font-weight: 700;
+    font-size: clamp(26px, 4vw, 38px); font-weight: 700;
     background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 50%, #059669 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    line-height: 1.2;
-    margin-bottom: 10px;
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; line-height: 1.2; margin-bottom: 10px;
   }
-  .header p {
-    color: #64748b;
-    font-size: 15px;
-  }
-  .stats {
-    display: flex;
-    justify-content: center;
-    gap: 36px;
-    margin-top: 24px;
-    flex-wrap: wrap;
-  }
-  .stat .num  { font-size: 22px; font-weight: 700; color: #4f46e5; }
-  .stat .lbl  { font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
+  .header p { color: #64748b; font-size: 15px; }
+  .stats { display: flex; justify-content: center; gap: 36px; margin-top: 24px; flex-wrap: wrap; }
+  .stat .num { font-size: 22px; font-weight: 700; color: #4f46e5; }
+  .stat .lbl { font-size: 11px; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
 
-  /* ── Layer card ── */
-  .layer {
-    background: #fff;
-    border: 1.5px solid #e2e8f0;
-    border-radius: 20px;
-    padding: 24px 28px;
-    margin-bottom: 4px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
-    transition: box-shadow 0.2s;
-  }
-  .layer:hover { box-shadow: 0 4px 20px rgba(99,102,241,0.1); }
-
-  .layer-header {
-    display: flex;
-    align-items: center;
+  /* ── 5-column grid ── */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
     gap: 12px;
-    margin-bottom: 18px;
+    align-items: start;
   }
-  .layer-icon {
-    width: 40px; height: 40px;
-    border-radius: 12px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px;
-    flex-shrink: 0;
-  }
-  .layer-title { font-size: 15px; font-weight: 700; color: #0f172a; }
-  .layer-sub   { font-size: 12px; color: #94a3b8; margin-top: 1px; }
 
-  /* ── Skill chips ── */
-  .chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+  /* ── Column card ── */
+  .col {
+    border-radius: 18px;
+    border: 1.5px solid #e2e8f0;
+    background: #fff;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    overflow: hidden;
+    transition: box-shadow 0.2s, transform 0.2s;
   }
-  .chip {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    border-radius: 10px;
-    padding: 6px 12px;
-    font-size: 13px;
-    font-weight: 500;
+  .col:hover {
+    box-shadow: 0 8px 28px rgba(0,0,0,0.09);
+    transform: translateY(-3px);
+  }
+
+  /* column accent top border */
+  .col-indigo { border-top: 3px solid #6366f1; }
+  .col-sky    { border-top: 3px solid #0ea5e9; }
+  .col-green  { border-top: 3px solid #22c55e; }
+  .col-amber  { border-top: 3px solid #f59e0b; }
+  .col-rose   { border-top: 3px solid #f43f5e; }
+
+  /* column header */
+  .col-head {
+    padding: 18px 16px 14px;
+    border-bottom: 1px solid #f1f5f9;
+  }
+  .col-icon {
+    width: 38px; height: 38px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; margin-bottom: 10px;
+  }
+  .bg-indigo { background: #eef2ff; }
+  .bg-sky    { background: #e0f2fe; }
+  .bg-green  { background: #dcfce7; }
+  .bg-amber  { background: #fef9c3; }
+  .bg-rose   { background: #ffe4e6; }
+
+  .col-title { font-size: 13px; font-weight: 700; color: #0f172a; line-height: 1.3; }
+  .col-sub   { font-size: 11px; color: #94a3b8; margin-top: 3px; line-height: 1.4; }
+
+  /* skill list */
+  .skill-list { padding: 12px 10px 14px; display: flex; flex-direction: column; gap: 6px; }
+
+  .skill-item {
+    display: flex; align-items: flex-start; gap: 8px;
+    padding: 7px 8px; border-radius: 9px;
     border: 1px solid transparent;
-    transition: transform 0.15s, box-shadow 0.15s;
+    transition: background 0.15s, border-color 0.15s;
     cursor: default;
   }
-  .chip:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
-  .chip .dot  { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
-  .chip .desc { font-size: 11px; color: #94a3b8; font-weight: 400; margin-left: 2px; }
+  .skill-item:hover { background: #f8fafc; border-color: #e2e8f0; }
 
-  /* color variants */
-  .chip-indigo { background: #eef2ff; border-color: #c7d2fe; color: #3730a3; }
-  .chip-indigo .dot { background: #6366f1; }
-  .chip-green  { background: #f0fdf4; border-color: #bbf7d0; color: #15803d; }
-  .chip-green .dot  { background: #22c55e; }
-  .chip-amber  { background: #fffbeb; border-color: #fde68a; color: #b45309; }
-  .chip-amber .dot  { background: #f59e0b; }
-  .chip-rose   { background: #fff1f2; border-color: #fecdd3; color: #be123c; }
-  .chip-rose .dot   { background: #f43f5e; }
-  .chip-purple { background: #faf5ff; border-color: #e9d5ff; color: #7e22ce; }
-  .chip-purple .dot { background: #a855f7; }
-  .chip-sky    { background: #f0f9ff; border-color: #bae6fd; color: #0369a1; }
-  .chip-sky .dot    { background: #0ea5e9; }
-  .chip-teal   { background: #f0fdfa; border-color: #99f6e4; color: #0f766e; }
-  .chip-teal .dot   { background: #14b8a6; }
-  .chip-orange { background: #fff7ed; border-color: #fed7aa; color: #c2410c; }
-  .chip-orange .dot { background: #f97316; }
-  .chip-gray   { background: #f8fafc; border-color: #e2e8f0; color: #475569; }
-  .chip-gray .dot   { background: #94a3b8; }
-
-  /* layer bg tints */
-  .layer-auto    { border-color: #c7d2fe; background: linear-gradient(135deg,#fff 80%,#eef2ff 100%); }
-  .layer-feishu  { border-color: #bae6fd; background: linear-gradient(135deg,#fff 80%,#f0f9ff 100%); }
-  .layer-shared  { border-color: #bbf7d0; background: linear-gradient(135deg,#fff 80%,#f0fdf4 100%); }
-  .layer-ext     { border-color: #fde68a; background: linear-gradient(135deg,#fff 80%,#fffbeb 100%); }
-  .layer-admin   { border-color: #fecdd3; background: linear-gradient(135deg,#fff 80%,#fff1f2 100%); }
-
-  /* ── Connector ── */
-  .connector {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 6px 0;
+  .skill-dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    margin-top: 4px; flex-shrink: 0;
   }
-  .conn-line { width: 2px; height: 20px; background: linear-gradient(to bottom, #c7d2fe, #e2e8f0); }
-  .conn-head {
-    width: 0; height: 0;
-    border-left: 6px solid transparent;
-    border-right: 6px solid transparent;
-    border-top: 8px solid #c7d2fe;
-  }
-  .conn-label { font-size: 10px; color: #94a3b8; margin-top: 2px; letter-spacing: 0.05em; }
+  .dot-indigo { background: #6366f1; }
+  .dot-sky    { background: #0ea5e9; }
+  .dot-green  { background: #22c55e; }
+  .dot-amber  { background: #f59e0b; }
+  .dot-rose   { background: #f43f5e; }
 
-  /* ── Dependency line inside auto layer ── */
-  .dep-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    padding: 0 4px;
+  .skill-body {}
+  .skill-name { font-size: 12px; font-weight: 600; color: #1e293b; }
+  .skill-desc { font-size: 11px; color: #94a3b8; margin-top: 1px; line-height: 1.4; }
+
+  /* dep chain (auto-load) */
+  .dep-chain {
+    padding: 10px 10px 14px;
+    display: flex; flex-direction: column; gap: 4px;
   }
-  .dep-chip {
+  .dep-item {
     display: flex; align-items: center; gap: 6px;
-    background: #f1f5f9; border: 1px solid #e2e8f0;
-    border-radius: 8px; padding: 5px 10px;
-    font-size: 12px; font-weight: 500; color: #475569;
   }
-  .dep-arrow { color: #c7d2fe; font-size: 14px; font-weight: 700; }
+  .dep-badge {
+    font-size: 11px; font-weight: 600;
+    background: #eef2ff; color: #3730a3;
+    border: 1px solid #c7d2fe;
+    border-radius: 7px; padding: 3px 7px;
+    white-space: nowrap;
+  }
+  .dep-arrow { color: #c7d2fe; font-size: 13px; }
+  .dep-line {
+    width: 2px; height: 8px;
+    background: linear-gradient(to bottom, #c7d2fe, #e2e8f0);
+    margin-left: 20px;
+  }
 
-  /* ── Permission badge ── */
-  .perm-strip {
-    display: flex; gap: 8px; flex-wrap: wrap;
-    margin-top: 10px; padding-top: 10px;
-    border-top: 1px dashed #e2e8f0;
+  /* footer strip */
+  .col-foot {
+    padding: 8px 12px 10px;
+    border-top: 1px dashed #f1f5f9;
+    font-size: 10px; color: #94a3b8;
+    line-height: 1.5;
   }
-  .perm { font-size: 11px; font-weight: 500; padding: 2px 8px; border-radius: 6px; }
-  .perm-open  { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
-  .perm-user  { background: #eef2ff; color: #3730a3; border: 1px solid #c7d2fe; }
-  .perm-admin { background: #fff1f2; color: #be123c; border: 1px solid #fecdd3; }
+  .perm-tag {
+    display: inline-block;
+    font-size: 10px; font-weight: 600;
+    padding: 2px 7px; border-radius: 5px;
+    margin-right: 4px; margin-bottom: 2px;
+  }
+  .pt-open  { background: #f0fdf4; color: #15803d; border: 1px solid #bbf7d0; }
+  .pt-user  { background: #eef2ff; color: #3730a3; border: 1px solid #c7d2fe; }
+  .pt-admin { background: #fff1f2; color: #be123c; border: 1px solid #fecdd3; }
 
   /* ── Footer ── */
   footer {
-    text-align: center;
-    margin-top: 52px;
-    color: #cbd5e1;
-    font-size: 12px;
-    letter-spacing: 0.05em;
+    text-align: center; margin-top: 48px;
+    color: #cbd5e1; font-size: 12px; letter-spacing: 0.05em;
   }
   footer span { color: #94a3b8; }
+
+  /* ── Responsive ── */
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 400px) {
+    .grid { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 <div class="wrapper">
 
-  <!-- Header -->
   <div class="header">
     <div class="badge">🌳 Skill Tree</div>
     <h1>小D · 技能树</h1>
-    <p>所有已注册技能按加载层级分类展示</p>
+    <p>所有已注册技能按层级分 5 列展示</p>
     <div class="stats">
       <div class="stat"><div class="num">22</div><div class="lbl">已注册技能</div></div>
       <div class="stat"><div class="num">5</div><div class="lbl">技能层级</div></div>
@@ -225,143 +199,195 @@
     </div>
   </div>
 
-  <!-- Layer 1: 自动加载 -->
-  <div class="layer layer-auto">
-    <div class="layer-header">
-      <div class="layer-icon" style="background:#eef2ff">🔄</div>
-      <div>
-        <div class="layer-title">自动加载层</div>
-        <div class="layer-sub">每条非 webchat 消息必跑，按依赖顺序加载</div>
+  <div class="grid">
+
+    <!-- ── Col 1: 自动加载 ── -->
+    <div class="col col-indigo">
+      <div class="col-head">
+        <div class="col-icon bg-indigo">🔄</div>
+        <div class="col-title">自动加载层</div>
+        <div class="col-sub">每条非 webchat 消息必跑，按依赖链顺序执行</div>
+      </div>
+      <div class="dep-chain">
+        <div class="dep-item"><div class="dep-badge">🧱 oc-core</div></div>
+        <div class="dep-line"></div>
+        <div class="dep-item"><div class="dep-arrow">↓</div><div class="dep-badge">🛡️ identity-guard</div></div>
+        <div class="dep-line"></div>
+        <div class="dep-item"><div class="dep-arrow">↓</div><div class="dep-badge">🧠 memory-core</div></div>
+        <div class="dep-line"></div>
+        <div class="dep-item"><div class="dep-arrow">↓</div><div class="dep-badge">🗂️ user-workspace</div></div>
+        <div class="dep-line"></div>
+        <div class="dep-item"><div class="dep-arrow">↓</div><div class="dep-badge">⚠️ violation-guard</div></div>
+        <div style="margin-top:8px; padding: 0 2px;">
+          <div class="dep-badge" style="background:#f8fafc;color:#64748b;border-color:#e2e8f0;">
+            🔀 model-switcher <span style="font-weight:400;color:#94a3b8">按需</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-foot">
+        <span class="perm-tag pt-open">透明执行</span>用户无感知
       </div>
     </div>
 
-    <!-- dep chain -->
-    <div class="dep-row">
-      <div class="dep-chip">🧱 oc-core</div>
-      <div class="dep-arrow">→</div>
-      <div class="dep-chip">🛡️ identity-guard</div>
-      <div class="dep-arrow">→</div>
-      <div class="dep-chip">🧠 memory-core</div>
-      <div class="dep-arrow">→</div>
-      <div class="dep-chip">🗂️ user-workspace</div>
-      <div class="dep-arrow">→</div>
-      <div class="dep-chip">⚠️ violation-guard</div>
-    </div>
-
-    <div class="perm-strip">
-      <span class="perm perm-open">透明执行，用户无感知</span>
-      <span class="perm perm-user">model-switcher 按需加载</span>
-    </div>
-  </div>
-
-  <div class="connector">
-    <div class="conn-line"></div><div class="conn-head"></div>
-    <div class="conn-label">channel = feishu 时</div>
-  </div>
-
-  <!-- Layer 2: 飞书集成 -->
-  <div class="layer layer-feishu">
-    <div class="layer-header">
-      <div class="layer-icon" style="background:#e0f2fe">📱</div>
-      <div>
-        <div class="layer-title">渠道集成 · 飞书</div>
-        <div class="layer-sub">仅在 channel=feishu 且操作涉及飞书时按需加载</div>
+    <!-- ── Col 2: 飞书集成 ── -->
+    <div class="col col-sky">
+      <div class="col-head">
+        <div class="col-icon bg-sky">📱</div>
+        <div class="col-title">飞书集成层</div>
+        <div class="col-sub">channel=feishu 且操作涉及飞书时按需加载</div>
+      </div>
+      <div class="skill-list">
+        <div class="skill-item">
+          <div class="skill-dot dot-sky"></div>
+          <div class="skill-body"><div class="skill-name">feishu-doc</div><div class="skill-desc">文档读写</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-sky"></div>
+          <div class="skill-body"><div class="skill-name">feishu-drive</div><div class="skill-desc">云盘管理</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-sky"></div>
+          <div class="skill-body"><div class="skill-name">feishu-perm</div><div class="skill-desc">权限管理</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-sky"></div>
+          <div class="skill-body"><div class="skill-name">feishu-wiki</div><div class="skill-desc">知识库读写</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-sky"></div>
+          <div class="skill-body"><div class="skill-name">feishu-media</div><div class="skill-desc">文件 / 图片</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-sky"></div>
+          <div class="skill-body"><div class="skill-name">feishu-create-doc</div><div class="skill-desc">新建文档</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-sky"></div>
+          <div class="skill-body"><div class="skill-name">feishu-create-bitable</div><div class="skill-desc">多维表格</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-sky"></div>
+          <div class="skill-body"><div class="skill-name">feishu-create-sheet</div><div class="skill-desc">电子表格</div></div>
+        </div>
+      </div>
+      <div class="col-foot">
+        <span class="perm-tag pt-user">user+</span>
+        docx · bitable · sheets · drive
       </div>
     </div>
-    <div class="chips">
-      <div class="chip chip-sky"><div class="dot"></div>feishu-doc<span class="desc">文档读写</span></div>
-      <div class="chip chip-sky"><div class="dot"></div>feishu-drive<span class="desc">云盘管理</span></div>
-      <div class="chip chip-sky"><div class="dot"></div>feishu-perm<span class="desc">权限管理</span></div>
-      <div class="chip chip-sky"><div class="dot"></div>feishu-wiki<span class="desc">知识库</span></div>
-      <div class="chip chip-sky"><div class="dot"></div>feishu-media<span class="desc">文件/图片</span></div>
-      <div class="chip chip-sky"><div class="dot"></div>feishu-create-doc<span class="desc">新建文档</span></div>
-      <div class="chip chip-sky"><div class="dot"></div>feishu-create-bitable<span class="desc">多维表格</span></div>
-      <div class="chip chip-sky"><div class="dot"></div>feishu-create-sheet<span class="desc">电子表格</span></div>
-    </div>
-    <div class="perm-strip">
-      <span class="perm perm-user">已开通：im:resource · docx:document · bitable:app · sheets:spreadsheet · drive:drive</span>
-    </div>
-  </div>
 
-  <div class="connector">
-    <div class="conn-line"></div><div class="conn-head"></div>
-    <div class="conn-label">所有 user+ 可触发</div>
-  </div>
-
-  <!-- Layer 3: 共享技能 -->
-  <div class="layer layer-shared">
-    <div class="layer-header">
-      <div class="layer-icon" style="background:#dcfce7">🌍</div>
-      <div>
-        <div class="layer-title">共享技能层</div>
-        <div class="layer-sub">无需权限，通过指令触发，无副作用</div>
+    <!-- ── Col 3: 共享技能 ── -->
+    <div class="col col-green">
+      <div class="col-head">
+        <div class="col-icon bg-green">🌍</div>
+        <div class="col-title">共享技能层</div>
+        <div class="col-sub">所有用户通过指令触发，无副作用</div>
+      </div>
+      <div class="skill-list">
+        <div class="skill-item">
+          <div class="skill-dot dot-green"></div>
+          <div class="skill-body">
+            <div class="skill-name">text-to-flowchart</div>
+            <div class="skill-desc">文生流程图 → GitHub Pages</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-green"></div>
+          <div class="skill-body">
+            <div class="skill-name">text-to-prototype</div>
+            <div class="skill-desc">文生原型图（仅私聊）</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-green"></div>
+          <div class="skill-body">
+            <div class="skill-name">multi-dimensional-analysis</div>
+            <div class="skill-desc">/research 多维并行调研</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-green"></div>
+          <div class="skill-body">
+            <div class="skill-name">feishu-media</div>
+            <div class="skill-desc">发文件 / 图片到飞书</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-foot">
+        <span class="perm-tag pt-open">所有用户</span>不访问私有数据
       </div>
     </div>
-    <div class="chips">
-      <div class="chip chip-green"><div class="dot"></div>text-to-flowchart<span class="desc">文生流程图</span></div>
-      <div class="chip chip-green"><div class="dot"></div>text-to-prototype<span class="desc">文生原型图（仅私聊）</span></div>
-      <div class="chip chip-green"><div class="dot"></div>multi-dimensional-analysis<span class="desc">/research 多维调研</span></div>
-      <div class="chip chip-green"><div class="dot"></div>feishu-media<span class="desc">发文件到飞书</span></div>
-    </div>
-    <div class="perm-strip">
-      <span class="perm perm-open">所有用户可用 · 不访问私有数据</span>
-    </div>
-  </div>
 
-  <div class="connector">
-    <div class="conn-line"></div><div class="conn-head"></div>
-    <div class="conn-label">user+ · 外部 API</div>
-  </div>
-
-  <!-- Layer 4: 外部服务 -->
-  <div class="layer layer-ext">
-    <div class="layer-header">
-      <div class="layer-icon" style="background:#fef9c3">🌐</div>
-      <div>
-        <div class="layer-title">外部服务</div>
-        <div class="layer-sub">调用第三方 API，需用户权限 ≥ user</div>
+    <!-- ── Col 4: 外部服务 ── -->
+    <div class="col col-amber">
+      <div class="col-head">
+        <div class="col-icon bg-amber">🌐</div>
+        <div class="col-title">外部服务</div>
+        <div class="col-sub">调用第三方 API，需用户权限 ≥ user</div>
+      </div>
+      <div class="skill-list">
+        <div class="skill-item">
+          <div class="skill-dot dot-amber"></div>
+          <div class="skill-body">
+            <div class="skill-name">weather</div>
+            <div class="skill-desc">天气查询，无需 Key<br>via wttr.in / Open-Meteo</div>
+          </div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-amber"></div>
+          <div class="skill-body">
+            <div class="skill-name">tavily</div>
+            <div class="skill-desc">AI 优化搜索<br>需 Tavily API Key</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-foot">
+        <span class="perm-tag pt-user">user+</span>
+        <span class="perm-tag pt-admin">敏感查询需 admin</span>
       </div>
     </div>
-    <div class="chips">
-      <div class="chip chip-amber"><div class="dot"></div>weather<span class="desc">天气查询 · 无需 Key</span></div>
-      <div class="chip chip-amber"><div class="dot"></div>tavily<span class="desc">AI 搜索 · 需 API Key</span></div>
-    </div>
-    <div class="perm-strip">
-      <span class="perm perm-user">权限要求：user+</span>
-      <span class="perm perm-admin">敏感查询需 admin 审批</span>
-    </div>
-  </div>
 
-  <div class="connector">
-    <div class="conn-line"></div><div class="conn-head"></div>
-    <div class="conn-label">仅 admin</div>
-  </div>
-
-  <!-- Layer 5: 运维管理 -->
-  <div class="layer layer-admin">
-    <div class="layer-header">
-      <div class="layer-icon" style="background:#ffe4e6">⚙️</div>
-      <div>
-        <div class="layer-title">运维管理层</div>
-        <div class="layer-sub">收到请求先验证 PERM=admin，否则拒绝并记录安全日志</div>
+    <!-- ── Col 5: 运维管理 ── -->
+    <div class="col col-rose">
+      <div class="col-head">
+        <div class="col-icon bg-rose">⚙️</div>
+        <div class="col-title">运维管理层</div>
+        <div class="col-sub">验证 PERM=admin，否则拒绝并记录安全日志</div>
+      </div>
+      <div class="skill-list">
+        <div class="skill-item">
+          <div class="skill-dot dot-rose"></div>
+          <div class="skill-body"><div class="skill-name">agent-manager</div><div class="skill-desc">多 agent 编排</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-rose"></div>
+          <div class="skill-body"><div class="skill-name">daily-digest</div><div class="skill-desc">每日日报发送</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-rose"></div>
+          <div class="skill-body"><div class="skill-name">healthcheck</div><div class="skill-desc">服务器安全加固</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-rose"></div>
+          <div class="skill-body"><div class="skill-name">tmux</div><div class="skill-desc">远程终端控制</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-rose"></div>
+          <div class="skill-body"><div class="skill-name">clawhub</div><div class="skill-desc">技能市场管理</div></div>
+        </div>
+        <div class="skill-item">
+          <div class="skill-dot dot-rose"></div>
+          <div class="skill-body"><div class="skill-name">skill-creator</div><div class="skill-desc">创建 / 更新技能</div></div>
+        </div>
+      </div>
+      <div class="col-foot">
+        <span class="perm-tag pt-admin">仅 admin</span>操作记录安全日志
       </div>
     </div>
-    <div class="chips">
-      <div class="chip chip-rose"><div class="dot"></div>agent-manager<span class="desc">多 agent 编排</span></div>
-      <div class="chip chip-rose"><div class="dot"></div>daily-digest<span class="desc">每日日报</span></div>
-      <div class="chip chip-rose"><div class="dot"></div>healthcheck<span class="desc">安全加固</span></div>
-      <div class="chip chip-rose"><div class="dot"></div>tmux<span class="desc">远程终端</span></div>
-      <div class="chip chip-rose"><div class="dot"></div>clawhub<span class="desc">技能市场</span></div>
-      <div class="chip chip-rose"><div class="dot"></div>skill-creator<span class="desc">创建技能</span></div>
-    </div>
-    <div class="perm-strip">
-      <span class="perm perm-admin">仅 admin · 操作记录安全日志</span>
-    </div>
-  </div>
 
-</div>
+  </div><!-- /grid -->
 
-<footer>Generated by <span>小D · DataClaw</span> &nbsp;·&nbsp; 2026</footer>
+  <footer>Generated by <span>小D · DataClaw</span> &nbsp;·&nbsp; 2026</footer>
 </div>
 </body>
 </html>
